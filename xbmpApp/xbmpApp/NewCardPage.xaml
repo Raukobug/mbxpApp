@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xbmpApp.NewCardPage" Title="Nyt kort">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout IsVisible="{Binding ShowError}" Margin="10,10,0,0">
+            <Label x:Name="Error"/>
+            <Button x:Name="ErrorCameraButton" Text="Ny scanning"/>
+            </StackLayout>
+            <StackLayout Padding="10,10,0,0" IsVisible="{Binding ShowCards}">
+                <Frame CornerRadius="10" OutlineColor="Black" Margin="20,20,0,20" Padding="5" BackgroundColor="White" HasShadow="True">
+                    <Grid HeightRequest="180">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Label x:Name="Name" FontSize="Medium" TextColor="Black" Grid.Column="0"/>
+                        <Label x:Name="Price" FontSize="Medium" TextColor="Black" Grid.Column="1" HorizontalTextAlignment="Start"/>
+                        <Label x:Name="expireDate" FontSize="Medium" TextColor="Black" Grid.Column="2" HorizontalTextAlignment="End"/>
+                        <Image x:Name="PhotoImage" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"/>
+                        <Label x:Name="Code" XAlign="Center" FontSize="Medium" TextColor="Black" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2"/>
+                    </Grid>
+                </Frame>
+                <Grid HeightRequest="60" Margin="20,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" x:Name="CameraButton" Text="Ny scanning"/>
+                    <Button Grid.Column="2" x:Name="SaveButton" Text="Gem gavekort"/>
+                </Grid>
+
+            </StackLayout>
+            <ContentView x:Name="actIndBackground"
+ BackgroundColor="#222222" Opacity="0.5"
+ AbsoluteLayout.LayoutFlags="All"
+ AbsoluteLayout.LayoutBounds="0,0,1,1"
+ IsVisible="{Binding IsLoading}">
+            </ContentView>
+            <ActivityIndicator x:Name="actInd"
+ AbsoluteLayout.LayoutFlags="PositionProportional"
+ AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+ IsRunning="{Binding IsLoading}"
+ IsVisible="{Binding IsLoading}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
